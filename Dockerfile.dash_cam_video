@@ -1,0 +1,6 @@
+FROM teaching_image
+WORKDIR /app
+COPY tools tools
+RUN pip install -r tools/requirements.txt
+COPY $PWD/modules/sensing_modules/video_feed/main.py main.py
+CMD ["python3", "main.py"]
