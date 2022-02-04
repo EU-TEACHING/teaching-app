@@ -142,7 +142,7 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 
 ## Partners
 <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/University-of-Pisa.png"  height="100">
-<img src="https://www.hua.gr/files/HUA_LOGOS/HUA_Logo_Blue.png"  height="100">
+<img src="https://lowinfood.eu/wp-content/uploads/2021/01/HUA-Logo-Blue-RGB-1-1024x427.jpg"  height="130">
 <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/CNR.png" height="80">
 <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/I%26M.png" height="80"> 
 <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/TUG.png" height="80">
