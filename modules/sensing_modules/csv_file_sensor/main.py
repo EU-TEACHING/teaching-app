@@ -3,17 +3,6 @@ import time
 import os
 import sys
 
-data_storage_path = ''
-DOCKER_RUN = os.getenv('DOCKER_RUN')
-if DOCKER_RUN is None:
-    current_path = os.path.dirname(os.path.abspath(__file__))
-    sub1 = os.path.abspath(os.path.join(current_path, os.pardir))
-    sub2 = os.path.abspath(os.path.join(sub1, os.pardir))    
-    sub3 = os.path.abspath(os.path.join(sub2, os.pardir)) 
-    sub4 = os.path.abspath(os.path.join(sub3, os.pardir)) 
-    final =os.path.abspath(os.path.join(sub2, os.pardir))
-    sys.path.append(final) 
-    data_storage_path = '../../../'
 
 from tools.rabbitmq.producer import Pika_Producer
 from tools.data_stracture.packet import Data_packet as dp
@@ -37,37 +26,41 @@ if __name__ == '__main__':
 
     SERVICE_NAME = os.getenv('SERVICE_NAME')
     if SERVICE_NAME is None:
-        SERVICE_NAME = 'file_sensor'
+        print('SERVICE_NAME Env Variable missing!')
+        exit() 
 
     RABBITMQ_HOST = os.getenv('RABBIT_HOST')
     if RABBITMQ_HOST is None:
-        RABBITMQ_HOST = '127.0.0.1'
+        print('RABBITMQ_HOST Env Variable missing!')
+        exit() 
 
     RABBITMQ_PORT = os.getenv('RABBITMQ_PORT')
     if RABBITMQ_PORT is None:
-        RABBITMQ_PORT = 5672
+        print('RABBITMQ_PORT Env Variable missing!')
+        exit() 
     else:
         RABBITMQ_PORT = int(RABBITMQ_PORT)
 
     RABBITMQ_USER = os.getenv('RABBITMQ_USER')
     if RABBITMQ_USER is None:
-        RABBITMQ_USER = 'user'
+        print('RABBITMQ_USER Env Variable missing!')
+        exit() 
     
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD')
     if RABBITMQ_PASSWORD is None:
-        RABBITMQ_PASSWORD = 'bitnami'
+        print('RABBITMQ_PASSWORD Env Variable missing!')
+        exit() 
 
     TRANSMIT_RATE =  os.getenv('TRANSMIT_RATE')
     if TRANSMIT_RATE is None:
-        TRANSMIT_RATE = 0.1
-    else:
-        TRANSMIT_RATE = float(TRANSMIT_RATE)
+        print('TRANSMIT_RATE Env Variable missing!')
+        exit() 
 
 
     FILE_SOURCE = os.getenv('FILE_SOURCE')
     if FILE_SOURCE is None:
-        FILE_SOURCE = data_storage_path + 'data_storage/raw_data/carla/multisensor_carla.csv'
-
+        print('FILE_SOURCE Env Variable missing!')
+        exit() 
     try:    
         readings = []
         with open(os.path.dirname(os.path.abspath(__file__))+'/'+ FILE_SOURCE) as csv_file:

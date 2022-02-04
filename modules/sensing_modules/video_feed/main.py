@@ -2,17 +2,6 @@ import os
 import sys
 import asyncio
 
-data_storage_path = ''
-DOCKER_RUN = os.getenv('DOCKER_RUN')
-if DOCKER_RUN is None:
-    current_path = os.path.dirname(os.path.abspath(__file__))
-    sub1 = os.path.abspath(os.path.join(current_path, os.pardir))
-    sub2 = os.path.abspath(os.path.join(sub1, os.pardir))    
-    sub3 = os.path.abspath(os.path.join(sub2, os.pardir)) 
-    sub4 = os.path.abspath(os.path.join(sub3, os.pardir)) 
-    final =os.path.abspath(os.path.join(sub2, os.pardir))
-    sys.path.append(final) 
-    data_storage_path = '../../../'
 
 from tools.rabbitmq.producer import Pika_Producer
 from tools.data_stracture.packet import Data_packet as dp
@@ -33,41 +22,50 @@ async def report_rtmp(publisher,video_handler):
 if __name__ == '__main__':
     SERVICE_NAME = os.getenv('SERVICE_NAME')
     if SERVICE_NAME is None:
-        SERVICE_NAME = 'dash_cam_video'
+        print('SERVICE_NAME Env Variable missing!')
+        exit() 
 
     RABBITMQ_HOST = os.getenv('RABBIT_HOST')
     if RABBITMQ_HOST is None:
-        RABBITMQ_HOST = '127.0.0.1'
+        print('RABBITMQ_HOST Env Variable missing!')
+        exit() 
 
     RABBITMQ_PORT = os.getenv('RABBITMQ_PORT')
     if RABBITMQ_PORT is None:
-        RABBITMQ_PORT = 5672
+        print('RABBITMQ_PORT Env Variable missing!')
+        exit() 
     else:
         RABBITMQ_PORT = int(RABBITMQ_PORT)
 
     RABBITMQ_USER = os.getenv('RABBITMQ_USER')
     if RABBITMQ_USER is None:
-        RABBITMQ_USER = 'user'
+        print('RABBITMQ_USER Env Variable missing!')
+        exit() 
     
     RABBITMQ_PASSWORD = os.getenv('RABBITMQ_PASSWORD')
     if RABBITMQ_PASSWORD is None:
-        RABBITMQ_PASSWORD = 'bitnami'
+        print('RABBITMQ_PASSWORD Env Variable missing!')
+        exit() 
       
     RTMP_SERVER = os.getenv('RTMP_SERVER')
     if RTMP_SERVER is None:
-        RTMP_SERVER = '127.0.0.1'
+        print('RTMP_SERVER Env Variable missing!')
+        exit() 
 
     RTMP_TOPIC = os.getenv('RTMP_TOPIC')
     if RTMP_TOPIC is None:
-        RTMP_TOPIC = 'dash_cam_video'  
+        print('RTMP_TOPIC Env Variable missing!')
+        exit() 
 
     VIDEO_SOURCE = os.getenv('VIDEO_SOURCE')
     if VIDEO_SOURCE is None:
-        VIDEO_SOURCE = data_storage_path + 'data_storage/videos/drive.mp4'  
-    
+        print('VIDEO_SOURCE Env Variable missing!')
+        exit() 
+
     OUTPUT_TOPIC = os.getenv('OUTPUT_TOPIC')
     if OUTPUT_TOPIC is None:
-        OUTPUT_TOPIC = ['dash_cam_video']
+        print('OUTPUT_TOPIC Env Variable missing!')
+        exit() 
     else:
         OUTPUT_TOPIC = OUTPUT_TOPIC.split(',') if ',' in OUTPUT_TOPIC  else [OUTPUT_TOPIC]        
 
