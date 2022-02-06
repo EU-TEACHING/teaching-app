@@ -4,7 +4,7 @@ import pickle
 import time
 
 class Pika_Consumer():
-    def __init__(self,rabbit_params,exchanges,queue,data_queue,callback=None,retries=5,socket_timeout=5):
+    def __init__(self,rabbit_params,exchanges,queue,data_queue=None,callback=None,retries=5,socket_timeout=5):
         credentials = pika.PlainCredentials(rabbit_params['user'], rabbit_params['password'])
         config = pika.ConnectionParameters(rabbit_params['host'], rabbit_params['port'],'/',credentials)	
         config.socket_timeout = socket_timeout        
