@@ -121,7 +121,7 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
   Select our modules and using as template the scenario_2.yaml or scenario_3.yaml add your custom module to the file.
 
 ## Contributors   
-<table >
+<table border=0 >
   <tr >
     <td> Konstantinos Tserpes</br>
           Assistant Professor</br>
@@ -141,16 +141,41 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 </table>
 
 ## Partners
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/University-of-Pisa.png"  height="100">
-<img src="https://lowinfood.eu/wp-content/uploads/2021/01/HUA-Logo-Blue-RGB-1-1024x427.jpg"  height="130">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/CNR.png" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/I%26M.png" height="80"> 
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/TUG.png" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/AVL-Logo.jpg" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2021-04/marelli-logo-history.png" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/Thales_logo.jpg" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2018-06/itml400.png" height="80">
-<img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/infineon_logo_rgb.jpg" height="80">
+<table border=0 >
+  <tr >
+    <td> <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/University-of-Pisa.png"  height="100"></td>   
+    <td><img src="https://lowinfood.eu/wp-content/uploads/2021/01/HUA-Logo-Blue-RGB-1-1024x427.jpg"  height="130"></td>
+    <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/CNR.png" height="80"></td>
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/I%26M.png" height="80"> </td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/TUG.png" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/AVL-Logo.jpg" height="80"></td>
+
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2021-04/marelli-logo-history.png" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/Thales_logo.jpg" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2018-06/itml400.png" height="80"></td>
+
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/infineon_logo_rgb.jpg" height="80"></td>
+  <td></td>
+  <td></td>
+
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
 
 ## Fundings
 <img src="https://teaching-h2020.eu/sites/default/files/inline-images/eu.jpg" height="50">
