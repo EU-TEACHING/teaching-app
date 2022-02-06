@@ -28,7 +28,10 @@ Any Docker supported system.
 * Linux :white_check_mark:
 * Windows 10,11 under WSL2 :white_check_mark:
 * IMX8 :warning:
-* Other ARM64 boards :warning:
+* Other ARM64 boards :warning: 
+
+:white_check_mark: **Working**
+:warning:  **In progress**
 
 ## IMX8 Instructions :vertical_traffic_light:
 For deployment on the IMX8 
@@ -119,6 +122,18 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 #### 3. Create your pipeline.
   Create a docker-compose file with the name your_exp_name.yaml.
   Select our modules and using as template the scenario_2.yaml or scenario_3.yaml add your custom module to the file.
+
+## Progress  
+
+|Scenario|Descritpion|x86/x64|IMX8|Other ARM|
+|-|-|-|-|-|
+|Scenario 1|Record measurements of a vehicle in a route.|:white_check_mark:|:white_check_mark:|:warning:|
+|Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:warning:|:warning:|
+|Scenario 3|Process real time video stream and draw the measurements on the image.|:white_check_mark:|:warning:|:warning:|
+|Scenario 4|Record measurements of a driver usnig shimmer device.|:warning:|:warning:|:warning:|
+
+:white_check_mark: **Tested**
+:warning:  **Untested**
 
 ## Contributors   
 <table border=0 >
