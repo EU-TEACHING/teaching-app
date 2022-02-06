@@ -52,12 +52,12 @@ RUN \
         libxrender1 \
         git \
      && \
-    python3 -m pip install numpy && \
+    python3 -m pip install numpy 
 
 # Install OpenCV
 RUN \ 
 # Prepare build
-    git clone https://github.com/opencv/opencv.git \
+    git clone https://github.com/opencv/opencv.git && \
     mkdir /opencv/build && \
     cd /opencv/build && \
     cmake \
