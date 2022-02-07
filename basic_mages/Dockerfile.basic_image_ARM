@@ -51,6 +51,7 @@ RUN \
         libxext6 \
         libxrender1 \
         git \
+        gcc-aarch64-linux-gnu \
      && \
     python3 -m pip install numpy 
 
