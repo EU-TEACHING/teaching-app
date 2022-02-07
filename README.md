@@ -54,6 +54,14 @@ Install pip and update the docker-compose
  rm /usr/bin/docker-compose
  python3 -m pip install docker-compose
 ```
+Clone the repo to the /run/media/mmcblk1p2 directory
+  ```bash
+  git clone https://github.com/EU-TEACHING/TEACHING_Platform.git
+  ```
+For updates use git pull inside the TEACHING_Platform directory
+  ```bash
+  git pull
+  ```
 
 ## Deployment
 #### 1. Copy the repository to your system.
@@ -128,7 +136,7 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 |Scenario|Description|x86/x64|IMX8|Other ARM|
 |-|-|-|-|-|
 |Scenario 1|Record measurements of a vehicle in a route.|:white_check_mark:|:white_check_mark:|:warning:|
-|Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:warning:|:warning:|
+|Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:white_check_mark:|:warning:|
 |Scenario 3|Process real time video stream and draw the measurements on the image.|:white_check_mark:|:warning:|:warning:|
 |Scenario 4|Record measurements of a driver usnig shimmer device.|:warning:|:warning:|:warning:|
 
