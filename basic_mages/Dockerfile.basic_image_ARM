@@ -52,6 +52,7 @@ RUN \
         libxrender1 \
         git \
         gcc-aarch64-linux-gnu \
+        g++-aarch64-linux-gnu \
      && \
     python3 -m pip install numpy 
 
