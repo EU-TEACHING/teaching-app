@@ -125,7 +125,7 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 
 ## Progress  
 
-|Scenario|Descritpion|x86/x64|IMX8|Other ARM|
+|Scenario|Description|x86/x64|IMX8|Other ARM|
 |-|-|-|-|-|
 |Scenario 1|Record measurements of a vehicle in a route.|:white_check_mark:|:white_check_mark:|:warning:|
 |Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:warning:|:warning:|
