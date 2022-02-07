@@ -54,7 +54,10 @@ if __name__ == '__main__':
     TRANSMIT_RATE =  os.getenv('TRANSMIT_RATE')
     if TRANSMIT_RATE is None:
         print('TRANSMIT_RATE Env Variable missing!')
-        exit() 
+        exit()
+    else:
+        TRANSMIT_RATE = float(TRANSMIT_RATE)
+        
 
 
     FILE_SOURCE = os.getenv('FILE_SOURCE')
