@@ -9,7 +9,7 @@ services:
       - ./env_files/rabbitmq_server.env
 
   rtmpserver:
-    image: tiangolo/nginx-rtmp
+    image: rtmp_server
     container_name: rtmpserver    
     hostname: rtmpserver
     ports:
