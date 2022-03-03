@@ -1,0 +1,17 @@
+# docker build --no-cache --rm -f Dockerfile.ai_toolkit . -t ai_toolkit
+FROM ubuntu AS ai-toolkit-git-build
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install -y git
+RUN git clone https://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@github.com/antodima/AI-Toolkit.git
+
+FROM teaching_image_tensorflow
+WORKDIR /app
+COPY --from=0 /AI-Toolkit/ai-toolkit/teaching_interface.py /app/module.py
+COPY --from=0 /AI-Toolkit/ai-toolkit/learning_modules /app/learning_modules
+COPY --from=0 /AI-Toolkit/ai-toolkit/data_proc_modules /app/data_proc_modules
+COPY --from=0 /AI-Toolkit/ai-toolkit/models /app/models
+COPY tools tools
+RUN pip install -r tools/requirements.txt
+COPY $PWD/modules/core_modules/process_module/main.py main.py
+CMD ["python3", "main.py"]
