@@ -1,9 +1,10 @@
-# docker build --no-cache --rm -f Dockerfile.ai_toolkit . -t ai_toolkit
+# docker build --no-cache --rm --build-arg GITHUB_ACCESS_TOKEN=<github-access-token> -f Dockerfile.ai_toolkit . -t ai_toolkit
 FROM ubuntu AS ai-toolkit-git-build
 ENV DEBIAN_FRONTEND=noninteractive
+ARG GITHUB_ACCESS_TOKEN
 RUN apt-get update
 RUN apt-get install -y git
-RUN git clone https://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@github.com/antodima/AI-Toolkit.git
+RUN git clone https://${GITHUB_ACCESS_TOKEN}@github.com/EU-TEACHING/AI-Toolkit.git
 
 FROM teaching_image_tensorflow
 WORKDIR /app
