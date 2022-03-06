@@ -139,6 +139,7 @@ Examples of custom modules can be found on modules/ai_modules/RL_predictor and m
 |Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:white_check_mark:|:warning:|
 |Scenario 3|Process real time video stream and draw the measurements on the image.|:white_check_mark:|:white_check_mark:|:warning:|
 |Scenario 4|Record measurements of a driver using a shimmer device.|:warning:|:warning:|:warning:|
+|Scenario 5|Integration between AI-Toolkit and TEACHING_Platform.|:white_check_mark:|:warning:|:warning:|
 
 :white_check_mark: **Tested**
 :warning:  **Untested**
