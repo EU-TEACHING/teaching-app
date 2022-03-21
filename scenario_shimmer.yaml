@@ -1,0 +1,21 @@
+version: "2.0"
+
+services:
+    
+  shimmer_sensors:
+    build:
+      context: .
+      dockerfile: Dockerfile.shimmer_device
+    image: shimmer_sensors
+    container_name: shimmer_sensors
+    restart: on-failure
+    environment:
+      - SERVICE_NAME=file_sensor
+      - RABBIT_HOST=rabbitmq
+      - SAMPLING_RATE=64
+      - DEVICE_PORT=/dev/ttyS0
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    devices:
+      - /dev/rfcomm0:/dev/ttyS0
+

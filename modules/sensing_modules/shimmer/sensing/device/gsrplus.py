@@ -54,23 +54,13 @@ class ShimmerGSRPlus:
             bool: True if  connected successfully.
         """        
         # Selection of the port
-        chosen_port = None
         if port is None or port == '':
             raise ValueError("Parameter port cannot be empty or None.")
         
-        print("Loading the available ports...")
-        for p in list_ports.comports():
-            print(p.device)
-            if str(p.device) == port:
-                chosen_port = p
-        
-        if chosen_port is None:
-            raise NotFoundErr("Port %s not found".format(port))
-
-        print(f"Selected {chosen_port.device}")
+        print(f"Selected {port}")
         
         # Starting connection with the chosen port
-        if self._device.connect(com_port=chosen_port.device):
+        if self._device.connect(com_port=port):
             if not self._device.set_sampling_rate(self.sampling_rate):
                 return False
             # After the connection we want to enable GSR and PPG
@@ -80,7 +70,7 @@ class ShimmerGSRPlus:
             if not self._device.set_active_gsr_mu(su.GSR_SKIN_CONDUCTANCE):
                 return False
             
-            print(f"Shimmer GSR+ connected to {chosen_port.device}.")
+            print(f"Shimmer GSR+ connected to {port}.")
             self._device.print_object_properties()
             return True
         
