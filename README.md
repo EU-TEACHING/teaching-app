@@ -35,7 +35,8 @@ Any Docker supported system.
 
 ## IMX8 Instructions :vertical_traffic_light:
 For deployment on the IMX8 
-Moving the docker directory to the external storage
+Moving the docker directory to the external storage (you can skip this if the internal memory is large enough). 
+
 ```bash
  systemctl docker stop
  fdisk /dev/mmcblk1
@@ -75,7 +76,7 @@ For updates use git pull inside the TEACHING_Platform directory
   ```
 #### For x86/x64 run the:
   ```bash
-  basic_images/./create_ARM_images.sh
+  basic_images/./create_images.sh
   ```
 ## Usage
 
