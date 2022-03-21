@@ -1,8 +1,9 @@
 from sensing.device.gsrplus import ShimmerGSRPlus
 from sensing.processing_module import signal_processing_module
+import os
 
 SAMPLING_RATE = 64
-DEVICE_PORT = '' # TODO: add the path to the device, e.g. /dev/ttyUSB0
+DEVICE_PORT = os.getenv('DEVICE_PORT') # TODO: add the path to the device, e.g. /dev/ttyUSB0
 
 MODE = 'process' # TODO: choose mode \in {'raw', 'process'}
 

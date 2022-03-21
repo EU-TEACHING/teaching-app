@@ -1,3 +1,4 @@
+from xml.dom import NotFoundErr
 from serial.tools import list_ports
 
 import sensing.device.shimmer_util as su
@@ -53,16 +54,18 @@ class ShimmerGSRPlus:
             bool: True if  connected successfully.
         """        
         # Selection of the port
-        if port is None:
-            available_ports = {}
-            print("Loading the available ports...")
-            for k, p in enumerate(list_ports.comports()):
-                available_ports[str(k)] = p
-                print(f"{k} - {p.device}")
-            index = input("Select the correct port for the Shimmer GSR+: ")
-            chosen_port = available_ports[index]
-        else:
-            chosen_port = port
+        chosen_port = None
+        if port is None or port == '':
+            raise ValueError("Parameter port cannot be empty or None.")
+        
+        print("Loading the available ports...")
+        for p in list_ports.comports():
+            print(p.device)
+            if str(p.device) == port:
+                chosen_port = p
+        
+        if chosen_port is None:
+            raise NotFoundErr("Port %s not found".format(port))
 
         print(f"Selected {chosen_port.device}")
         
