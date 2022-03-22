@@ -31,8 +31,10 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
+        
         with:
-          context: basic_images/Dockerfile.basic_image_ARM
+          working-directory: basic_images
+          context: Dockerfile.basic_image_ARM
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
