@@ -1,4 +1,4 @@
-name: ci
+name: Build basic image ARM
 
 on: [workflow_dispatch]
 
