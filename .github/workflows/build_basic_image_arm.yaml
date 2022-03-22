@@ -35,6 +35,6 @@ jobs:
           context: /basic_images/Dockerfile.basic_image_ARM
           platforms: linux/amd64,linux/arm64
           push: true
-#           tags: |
-#             user/app:latest
+          tags: |
+            user/app:latest
 #             user/app:1.0.0
