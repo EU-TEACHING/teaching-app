@@ -1,0 +1,52 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    env_file:
+      - ./env_files/rabbitmq_server.env
+
+  file_multisensor:
+    build:
+      context: .
+      dockerfile: Dockerfile.file_sensors
+    image: file_multisensor
+    container_name: file_multisensor
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - SERVICE_NAME=file_sensor
+      - RABBIT_HOST=rabbitmq
+      - FILE_SOURCE=data_storage/raw_data/wesad/eda.csv 
+      - TRANSMIT_RATE=0.1
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    volumes:
+      - ./data_storage:/app/data_storage
+
+  ai_toolkit:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai_toolkit
+      args:
+        - GITHUB_ACCESS_TOKEN=<github-access-token>
+    image: ai_toolkit
+    container_name: ai_toolkit
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - RABBIT_HOST=rabbitmq
+      - SERVICE_NAME=ai_toolkit
+      - INPUT_TOPIC=eda
+      - BATCH_SIZE=1
+      - OUTPUT_TOPIC=behavior_profile
+      - MODEL_PATH=esn_stress_recognition.pkl
+      - MODEL_TYPE=esn
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    volumes:
+      - ./data_storage:/app/data_storage

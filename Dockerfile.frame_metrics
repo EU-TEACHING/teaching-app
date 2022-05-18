@@ -1,7 +1,0 @@
-FROM teaching_image
-WORKDIR /app
-COPY $PWD/modules/custom_modules/frame_metrics/module.py module.py
-COPY tools tools
-RUN pip install -r tools/requirements.txt
-COPY $PWD/modules/core_modules/process_module/main.py main.py
-CMD ["python3", "main.py"]

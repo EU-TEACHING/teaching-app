@@ -1,0 +1,78 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    env_file:
+      - ./env_files/rabbitmq_server.env
+
+  rtmpserver:
+    image: rtmp_server
+    container_name: rtmpserver    
+    hostname: rtmpserver
+    ports:
+      - 1935:1935
+
+  dash_cam_video:
+    build:
+      context: .
+      dockerfile: Dockerfile.dash_cam_video
+    image: dash_cam_video
+    container_name: dash_cam_video
+    depends_on:       
+      - rabbitmq
+      - rtmpserver
+    restart: on-failure
+    environment:
+      - SERVICE_NAME=dash_cam_video
+      - RABBIT_HOST=rabbitmq
+      - RTMP_SERVER=rtmpserver
+      - RTMP_TOPIC=dash_cam_video
+      - VIDEO_SOURCE=data_storage/videos/drive.mp4
+      - OUTPUT_TOPIC=dash_cam_video
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    volumes:
+      - ./data_storage:/app/data_storage
+
+  file_multisensor:
+    build:
+      context: .
+      dockerfile: Dockerfile.file_sensors
+    image: file_multisensor
+    container_name: file_multisensor
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - SERVICE_NAME=file_sensor
+      - RABBIT_HOST=rabbitmq
+      - FILE_SOURCE=data_storage/raw_data/carla/multisensor_carla.csv 
+      - TRANSMIT_RATE=0.1
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    volumes:
+      - ./data_storage:/app/data_storage
+
+  frame_metrics:
+    build:
+      context: .
+      dockerfile: Dockerfile.frame_metrics
+    image: frame_metrics
+    container_name: frame_metrics
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - RABBIT_HOST=rabbitmq
+      - SERVICE_NAME=frame_metrics
+      - INPUT_TOPIC=dash_cam_video,speed,gz
+      - BATCH_SIZE=1
+      - MODEL_PATH=''
+      - OUTPUT_TOPIC=frame_metrics
+    env_file:
+      - ./env_files/rabbitmq_client.env
+    volumes:
+      - ./data_storage:/app/data_storage

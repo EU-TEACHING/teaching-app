@@ -1,0 +1,66 @@
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    env_file:
+      - ../defaults/rabbitmq_server.env
+
+  influxdb:
+    image: influxdb:2.0
+    container_name: influxdb
+    hostname: influxdb
+    ports:
+      - 8086:8086
+    env_file:
+      - ../defaults/influxdb_server.env
+  
+  file_multisensor:
+    image: "chronis10/teaching-sensors:${ARCH:-amd64}"
+    container_name: file_multisensor
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - SERVICE_TYPE=file.csv_feed.CSVFeed
+      - SERVICE_NAME=file_multisensor
+      - FILE_PATH=./raw_data/wesad/eda.csv 
+      - TRANSMIT_RATE=0.1
+      - OUTPUT_TOPIC=sensor.eda.value
+    env_file:
+      - ../defaults/rabbitmq_client.env
+    volumes:
+      - ../raw_data:/app/raw_data
+
+  ai_toolkit:
+    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
+    container_name: ai_toolkit
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    environment:
+      - SERVICE_TYPE=modules.stress_module.StressModule
+      - SERVICE_NAME=stress_module
+      - TOPICS=sensor.eda.value
+    env_file:
+      - ../defaults/rabbitmq_client.env
+      - ../defaults/esn_stress.env
+  
+  influxdb_logger:
+    image: "chronis10/teaching-data:${ARCH:-amd64}"
+    container_name: influxdb_logger
+    depends_on:
+      - rabbitmq
+      - influxdb
+    restart: on-failure
+    environment:
+      - SERVICE_TYPE=influxdb.client.InfluxDBClientHandler
+      - SERVICE_NAME=influxdb_logger
+      - TOPICS=*.*.value
+    env_file:
+      - ../defaults/rabbitmq_client.env
+      - ../defaults/influxdb_client.env

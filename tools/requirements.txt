@@ -1,3 +1,0 @@
-pika==1.2.0
-vidgear[core]
-influxdb-client

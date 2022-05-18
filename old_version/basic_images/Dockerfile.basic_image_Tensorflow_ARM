@@ -1,0 +1,3 @@
+FROM teaching2020/dockerized_platform:base
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install tensorflow -f https://tf.kmtea.eu/whl/stable.html

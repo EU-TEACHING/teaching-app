@@ -1,3 +1,0 @@
-FROM teaching_image
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install tensorflow -f https://tf.kmtea.eu/whl/stable.html

@@ -1,0 +1,18 @@
+# docker build --no-cache --rm --build-arg GITHUB_ACCESS_TOKEN=<github-access-token> -f Dockerfile.ai_toolkit . -t ai_toolkit
+FROM ubuntu AS ai-toolkit-git-build
+ENV DEBIAN_FRONTEND=noninteractive
+ARG GITHUB_ACCESS_TOKEN
+RUN apt-get update
+RUN apt-get install -y git
+RUN git clone https://${GITHUB_ACCESS_TOKEN}@github.com/EU-TEACHING/AI-Toolkit.git
+
+FROM teaching_image_tensorflow
+WORKDIR /app
+COPY --from=0 /AI-Toolkit/ai-toolkit/teaching_interface.py /app/module.py
+COPY --from=0 /AI-Toolkit/ai-toolkit/learning_modules /app/learning_modules
+COPY --from=0 /AI-Toolkit/ai-toolkit/data_proc_modules /app/data_proc_modules
+COPY --from=0 /AI-Toolkit/ai-toolkit/models /app/models
+COPY tools tools
+RUN pip install -r tools/requirements.txt
+COPY $PWD/modules/core_modules/process_module/main.py main.py
+CMD ["python3", "main.py"]

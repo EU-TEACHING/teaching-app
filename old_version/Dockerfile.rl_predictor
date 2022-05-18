@@ -1,0 +1,7 @@
+FROM teaching_image_tensorflow
+WORKDIR /app
+COPY $PWD/modules/ai_modules/RL_predictor/module.py module.py
+COPY tools tools
+RUN pip install -r tools/requirements.txt
+COPY $PWD/modules/core_modules/process_module/main.py main.py
+CMD ["python3", "main.py"]

@@ -1,7 +1,0 @@
-FROM teaching_image
-WORKDIR /app
-COPY tools tools
-RUN pip install -r tools/requirements.txt
-COPY $PWD/modules/sensing_modules/shimmer/* /app/
-RUN pip install -r requirements.txt
-CMD ["python3", "main.py"]

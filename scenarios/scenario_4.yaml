@@ -1,0 +1,51 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    env_file:
+      - ../defaults/rabbitmq_server.env
+
+  influxdb:
+    image: influxdb:2.0
+    container_name: influxdb
+    hostname: influxdb
+    ports:
+      - 8086:8086
+    env_file:
+      - ../defaults/influxdb_server.env
+
+  shimmer_sensors:
+    image: "chronis10/teaching-sensors:${ARCH:-amd64}"
+    container_name: shimmer_sensors
+    depends_on:
+      - rabbitmq
+      - influxdb
+    restart: on-failure
+    environment:
+      - SERVICE_TYPE=wearable.shimmer.gsrplus.ShimmerGSRPlus
+      - SERVICE_NAME=shimmer_sensors
+      - PROCESS=false
+      - SAMPLING_RATE=64
+    env_file:
+      - ../defaults/rabbitmq_client.env
+    devices:
+      - /dev/rfcomm0:/dev/ttyS0
+
+  influxdb_logger:
+    image: "chronis10/teaching-data:${ARCH:-amd64}"
+    container_name: influxdb_logger
+    depends_on:
+      - rabbitmq
+      - influxdb
+    restart: on-failure
+    environment:
+      - SERVICE_TYPE=influxdb.client.InfluxDBClientHandler
+      - SERVICE_NAME=influxdb_logger
+      - TOPICS=sensor.*.value
+    env_file:
+      - ../defaults/rabbitmq_client.env
+      - ../defaults/influxdb_client.env
