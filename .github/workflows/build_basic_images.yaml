@@ -1,0 +1,49 @@
+name: Build basic images
+
+on: [workflow_dispatch]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      -
+        name: Build and push ARM64
+        uses: docker/build-push-action@v2
+        
+        with:       
+          context: basic_images
+          file: basic_images/Dockerfile.basic_image_ARM
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/teaching_basic_image:arm64
+
+      -
+        name: Build and push AMD64
+        uses: docker/build-push-action@v2
+        
+        with:       
+          context: basic_images
+          file: basic_images/Dockerfile.basic_image
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/teaching_basic_image:latest
+            
+            
