@@ -36,6 +36,14 @@ We also offer an indipendend service (that can be run in parallel) that can be u
 
 If these repos, do not provide the producing or consuming nodes you need. Then you can implement your own following the guidelines provided within each report.
 
+## Repository Structure
+
+The main content of this repo:
+
+ * [defaults](defaults): defaults environment variables useful for the TEACHING platform.
+ * [old_version](old_version): some reference scripts from the previous version of the platform.
+ * [scenarios](scenarios): TEACHING app applications defined as docker-composed config files.
+
 ## Supported Platforms
 
 Theoretically any Docker supported system may be run a TEACHING application. However, the reference platforms for the projects are:
