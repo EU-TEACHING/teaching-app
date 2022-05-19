@@ -1,12 +1,17 @@
-# teaching-app
-Repository for TEACHING application startup and deployment. This can be taken as the main access point for the TEACHING plaform developed within the EU TEACHING 2020 project.
+<img src="https://teaching-h2020.eu/sites/default/files/teaching55.png" height="80">
 
-In this repository you will find a set of TEACHING applications defined as docker compose configuration files following a parallel and distributed micro-services architecture. *Five different applications* showcasing the main features of the platform can be found in [scenarios](https://github.com/EU-TEACHING/teaching-app/tree/main/scenarios).
+# :car: TEACHING App :airplane:
+
+TEACHING: A computing Toolkit for building Efficient Autonomous appliCations leveraging Humanistic INtelliGence is an EU-funded project that designs a computing platform and the associated software toolkit supporting the development and deployment of autonomous, adaptive and dependable CPSoS applications, allowing them to exploit a sustainable human feedback to drive, optimize and personalize the provisioning of their services.
+
+This repository can be taken as the **main access point** for the **TEACHING platform** (a collection of repositories) and for the **design and deployment** of new applications within the EU TEACHING 2020 project.
+
+In particular, in this repository you will find a set of TEACHING applications defined as *docker-compose* configuration files following a parallel and distributed micro-services architecture. *Five different applications* showcasing the main features of the platform can be found in [scenarios](https://github.com/EU-TEACHING/teaching-app/tree/main/scenarios).
 
 ## Main Application Logic
 
 The application logic is defined at the docker compose level with a graph connecting several nodes (docker images) and arcs (communications link).
-Nodes can be *producers*, *consumers* or *both* and communicate via RabbitMQ. Following the INPUT_TOPIC and OUTPUT_TOPIC variables (often hardcoded within each node) is possible to understand the graph composition.
+Nodes can be *producers*, *consumers* or *both* and communicate via RabbitMQ. Following the INPUT_TOPIC(s) and OUTPUT_TOPIC(s) variables (often hardcoded within each node) is possible to understand the graph composition.
 
 Nevertheless, every node is agnostic with respect to the graph composition and technology used in other nodes. Every node only implements a single function and process each *DataPacket* (a JSON based object) made available trought the INPUT_TOPIC.
 
@@ -19,6 +24,7 @@ Data flow and processing is mostly abstracted to the end TEACHING app designer a
 In order to implement a new TEACHING application, first it is important to understand if the nodes available are enough to fit your needs. 
 In particular you may want to check the following repos:
 
+- [teaching-base](https://github.com/EU-TEACHING/teaching-base): Repository for the base image(s) and classes of the TEACHING platform.
 - [teaching-sensors](https://github.com/EU-TEACHING/teaching-sensors): Project for all the sensors that can be instantiated, from "file" sensors to cameras and wearables.
 - [teaching-data](https://github.com/EU-TEACHING/teaching-data): Project for persistent storage, e.g., the influxdb instance.
 - [teaching-ai-toolkit](https://github.com/EU-TEACHING/teaching-ai-toolkit): AI-Toolkit collecting and implementing the AI modules for a TEACHING application.
@@ -29,3 +35,60 @@ We also offer an indipendend service (that can be run in parallel) that can be u
 - [teaching-model-aggregator](https://github.com/EU-TEACHING/teaching-model-aggregator): Module devoted to federated model aggregation.
 
 If these repos, do not provide the producing or consuming nodes you need. Then you can implement your own following the guidelines provided within each report.
+
+## Supported Platforms
+
+Theoretically any Docker supported system may be run a TEACHING application. However, the reference platforms for the projects are:
+
+* Linux :white_check_mark:
+* Windows 10,11 under WSL2 :white_check_mark:
+* IMX8 :warning:
+* Other ARM64 boards :warning: 
+
+:white_check_mark: **Working**
+:warning:  **In progress**
+
+## Pre-Defined Apps (Also Called Scenarios)
+
+|Scenario|Description|x86/x64|IMX8|Other ARM|
+|-|-|-|-|-|
+|Scenario 1|Record measurements of a vehicle in a route.|:white_check_mark:|:white_check_mark:|:warning:|
+|Scenario 2|Personalization of driving experience using a RL model.|:white_check_mark:|:white_check_mark:|:warning:|
+|Scenario 3|Process real time video stream and draw the measurements on the image.|:white_check_mark:|:white_check_mark:|:warning:|
+|Scenario 4|Record measurements of a driver using a shimmer device.|:warning:|:warning:|:warning:|
+|Scenario 5|Integration between AI-Toolkit and TEACHING_Platform.|:white_check_mark:|:warning:|:warning:|
+
+:white_check_mark: **Tested**
+:warning:  **Untested**
+
+## Partners
+<table border=0 >
+  <tr >
+    <td> <img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/University-of-Pisa.png"  height="100"></td>   
+    <td><img src="https://lowinfood.eu/wp-content/uploads/2021/01/HUA-Logo-Blue-RGB-1-1024x427.jpg"  height="130"></td>
+    <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/CNR.png" height="80"></td>
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/I%26M.png" height="80"> </td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/TUG.png" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/AVL-Logo.jpg" height="80"></td>
+
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2021-04/marelli-logo-history.png" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/Thales_logo.jpg" height="80"></td>
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2018-06/itml400.png" height="80"></td>
+
+  </tr>
+  <tr >
+  <td><img src="https://teaching-h2020.eu/sites/default/files/styles/mt_brands/public/2020-02/infineon_logo_rgb.jpg" height="80"></td>
+  <td></td>
+  <td></td>
+
+  </tr>
+</table>
+
+## Fundings
+<img src="https://teaching-h2020.eu/sites/default/files/inline-images/eu.jpg" height="50">
+
+This project has received funding from the European Union’s Horizon 2020 Research and Innovation program under grant agreement No 871385.
