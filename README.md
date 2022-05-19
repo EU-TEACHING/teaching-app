@@ -42,7 +42,7 @@ Theoretically any Docker supported system may be run a TEACHING application. How
 
 * Linux :white_check_mark:
 * Windows 10,11 under WSL2 :white_check_mark:
-* IMX8 :warning:
+* IMX8 :warning: (see additional instructions [here](https://github.com/EU-TEACHING/teaching-app/blob/main/imx8_setup.md))
 * Other ARM64 boards :warning: 
 
 :white_check_mark: **Working**
