@@ -34,7 +34,7 @@ We also offer an indipendend service (that can be run in parallel) that can be u
 
 - [teaching-model-aggregator](https://github.com/EU-TEACHING/teaching-model-aggregator): Module devoted to federated model aggregation.
 
-If these repos, do not provide the producing or consuming nodes you need. Then you can implement your own following the guidelines provided within each report.
+If these repos do not provide the producing or consuming nodes you need. Then you can implement your own following the guidelines provided within each repository documentation (mostly README.md).
 
 ## Repository Structure
 
@@ -49,7 +49,7 @@ The main content of this repo:
 Theoretically any Docker supported system may be run a TEACHING application. However, the reference platforms for the projects are:
 
 * Linux :white_check_mark:
-* Windows 10,11 under WSL2 :white_check_mark:
+* Windows 10, 11 under WSL2 :white_check_mark:
 * IMX8 :warning: (see additional instructions [here](https://github.com/EU-TEACHING/teaching-app/blob/main/imx8_setup.md))
 * Other ARM64 boards :warning: 
 
