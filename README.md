@@ -74,6 +74,9 @@ Theoretically any Docker supported system may be run a TEACHING application. How
 First of all you need to setup your environment. If you are using Windows, you can install [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) and [Docker Desktop](https://docs.docker.com/desktop/windows/install/). Then within Docker settings make sure to check the WSL integration tab and connect it to your virtual image. Once this is done you can run docker-compose directly within your WSL image (e.g. Ubuntu based). Alternatively, you can install and run everything from Windows powershell directly. Before running the app, make sure you have docker installed properly in your system using the latest stable version. If you are using Windows you can follow [this guide](https://docs.docker.com/desktop/windows/wsl/). If you still encounter some issues try to run the simplest scenario like [scenario_1.yaml](https://github.com/EU-TEACHING/teaching-app/blob/main/scenarios/scenario_1.yaml) without modifying it. If this also fails it means the problem is mostly due to the installation of the TEACHING app dependencies (docker images, etc.) out of the scope of this repository. You can run the scenarios with the following commands:
 
 ```
+# if you want to run it in the iMX8 remember to set the ARCH global variable
+# to "arm64" or "amd64" will be set by default
+export ARCH=arm64
 git clone --recurse-submodules https://github.com/EU-TEACHING/teaching-app
 cd teaching-app
 docker-compose -f scenarios/scenario_1.yaml up
