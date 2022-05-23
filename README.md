@@ -75,7 +75,7 @@ First of all you need to setup your environment. If you are using Windows, you c
 
 ```
 # if you want to run it in the iMX8 remember to set the ARCH global variable
-# to "arm64" or "amd64" will be set by default
+# to "arm64" otherwise "amd64" (for laptops, etc.) will be set by default
 export ARCH=arm64
 git clone --recurse-submodules https://github.com/EU-TEACHING/teaching-app
 cd teaching-app
