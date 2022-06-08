@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+data_storage/federated/**/*.h5
 
 # C extensions
 *.so
