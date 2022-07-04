@@ -1,0 +1,1 @@
+{"service_type": "modules.rl_module.RLModule", "service_name": "rl_module_1", "topic": "federated.rlmodule.local_model", "timestamp": "2022-07-04 22:49:05.371620", "body": {"metadata": {}}}
