@@ -20,13 +20,13 @@ services:
 
   rl_predictor_1:
     image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
-    container_name: rl_module_1
+    container_name: rl_predictor_1
     depends_on: 
       - rabbitmq
       - fed_server
     restart: on-failure
     environment:
-      - SERVICE_NAME=rl_module_1
+      - SERVICE_NAME=rl_predictor_1
       - GROUPID=1
     env_file:
       - env/rl_predictor.env
@@ -37,13 +37,13 @@ services:
   
   rl_predictor_2:
     image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
-    container_name: rl_module_2
+    container_name: rl_predictor_2
     depends_on: 
       - rabbitmq
       - fed_server
     restart: on-failure
     environment:
-      - SERVICE_NAME=rl_module_2
+      - SERVICE_NAME=rl_predictor_2
       - GROUPID=2
     env_file:
       - env/rl_predictor.env
