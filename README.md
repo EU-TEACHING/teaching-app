@@ -79,6 +79,7 @@ First of all you need to setup your environment. If you are using Windows, you c
 export ARCH=arm64
 git clone --recurse-submodules https://github.com/EU-TEACHING/teaching-app
 cd teaching-app
+sh setup.sh
 docker-compose -f scenarios/scenario_1.yaml up
 ```
 
