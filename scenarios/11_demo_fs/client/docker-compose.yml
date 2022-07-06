@@ -41,7 +41,7 @@ services:
       - GROUPID=$GROUPID
     env_file:
       - env/rl_predictor.env
-      - env/comm/kafka_client.env
+      - env/comm/fs_client.env
       - env/comm/rabbitmq_client.env
     volumes:
       - $APP_DIR/data_storage:/app/storage

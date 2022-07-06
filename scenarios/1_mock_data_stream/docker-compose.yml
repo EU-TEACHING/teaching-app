@@ -20,7 +20,7 @@ services:
   
   carla_mock:
     image: "chronis10/teaching-sensors:${ARCH:-amd64}"
-    container_name: carla_mocò
+    container_name: carla_mock
     depends_on:
       - rabbitmq
     restart: on-failure
