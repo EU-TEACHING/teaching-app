@@ -18,8 +18,8 @@ services:
     volumes:
       - $APP_DIR/data_storage:/app/storage
     environment:
-      - "mts.folders.monitored=/app/storage/federated/cloud/outgoing"
-      - "mts.folders.downloads=/app/storage/federated/cloud/incoming"
+      - "mts.folders.monitored=/app/storage/federated/cloud/rl_module/outgoing"
+      - "mts.folders.downloads=/app/storage/federated/cloud/rl_module/incoming"
       - "mts.file.sender.id=cloud"
       - "mts.file.deleteUploads=true"
       - "kafka.bootstrapAddress=node249-hpc.isti.cnr.it:9092"
