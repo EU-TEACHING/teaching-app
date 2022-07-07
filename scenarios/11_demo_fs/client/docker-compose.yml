@@ -58,30 +58,30 @@ services:
   #   volumes:
   #     - $APP_DIR/mock_data:/app/raw_data
 
-  shimmer_sensors:
-    image: "chronis10/teaching-sensors:${ARCH:-amd64}"
-    container_name: shimmer_sensors
-    depends_on:
-      - rabbitmq
-      - influxdb
-    restart: on-failure
-    env_file:
-      - env/shimmer_sensors.env
-      - env/comm/rabbitmq_client.env
-    devices:
-      - /dev/rfcomm0:/dev/ttyS0
+#   shimmer_sensors:
+#     image: "chronis10/teaching-sensors:${ARCH:-amd64}"
+#     container_name: shimmer_sensors
+#     depends_on:
+#       - rabbitmq
+#       - influxdb
+#     restart: on-failure
+#     env_file:
+#       - env/shimmer_sensors.env
+#       - env/comm/rabbitmq_client.env
+#     devices:
+#       - /dev/rfcomm0:/dev/ttyS0
   
-  stress_module:
-    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
-    container_name: stress_module
-    depends_on: 
-      - rabbitmq
-    restart: on-failure
-    env_file:
-      - env/stress_module.env
-      - env/comm/rabbitmq_client.env
-    volumes:
-      - $APP_DIR/data_storage:/app/storage
+#   stress_module:
+#     image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
+#     container_name: stress_module
+#     depends_on: 
+#       - rabbitmq
+#     restart: on-failure
+#     env_file:
+#       - env/stress_module.env
+#       - env/comm/rabbitmq_client.env
+#     volumes:
+#       - $APP_DIR/data_storage:/app/storage
   
   influxdb_logger:
     image: "chronis10/teaching-data:${ARCH:-amd64}"
