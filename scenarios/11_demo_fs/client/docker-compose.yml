@@ -60,7 +60,7 @@ services:
       - "mts.file.sender.id=mts1"
       - "mts.file.deleteUploads=false"
       - "kafka.bootstrapAddress=node249-hpc.isti.cnr.it:9092"
-      - "kafka.groupId=mts1"
+      - "kafka.groupId=$GROUPID"
       - "kafka.uploadsTopicName=teaching.federated_learning.client_models"
       - "kafka.downloadsTopicName=teaching.federated_learning.aggregated_model"
       - "crypto.algorithm=AES"
