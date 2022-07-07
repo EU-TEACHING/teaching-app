@@ -46,6 +46,25 @@ services:
     volumes:
       - $APP_DIR/data_storage:/app/storage
 
+  mts-1:
+    image: model-transfer-service:v0.1
+    container_name: mts1
+    restart: always
+    volumes:
+      - $APP_DIR/data_storage:/app/storage
+    environment:
+      - "mts.folders.monitored=/app/storage/federated/local/rl_module/outgoing"
+      - "mts.folders.downloads=/app/storage/federated/local/rl_module/incoming"
+      - "mts.file.sender.id=mts1"
+      - "mts.file.deleteUploads=false"
+      - "kafka.bootstrapAddress=node249-hpc.isti.cnr.it:9092"
+      - "kafka.groupId=mts1"
+      - "kafka.uploadsTopicName=teaching.federated_learning.client_models"
+      - "kafka.downloadsTopicName=teaching.federated_learning.aggregated_model"
+      - "crypto.algorithm=AES"
+      - "crypto.aes.passwords={mts1: 'McoO!lMcjneowufUF23', cloud: 'IfjcoaO!ICJDMa214'}"
+      - "crypto.aes.salts={mts1: 'dedc782d9130289c', cloud: '6068CCF5E6DFB752'}"
+
   # eda_mock:
   #   image: "chronis10/teaching-sensors:${ARCH:-amd64}"
   #   container_name: file_multisensor
