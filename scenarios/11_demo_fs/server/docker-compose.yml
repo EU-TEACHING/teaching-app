@@ -8,6 +8,7 @@ services:
       - env/comm/fs_client.env
     volumes:
       - $APP_DIR/data_storage:/app/storage
+      - ../../../../teaching-ai-toolkit/federated:/app/federated
 
   cloud:
     image: model-transfer-service:v0.1
