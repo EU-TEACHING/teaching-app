@@ -58,7 +58,7 @@ services:
       - "mts.folders.monitored=/app/storage/federated/local/rl_module/outgoing"
       - "mts.folders.downloads=/app/storage/federated/local/rl_module/incoming"
       - "mts.file.sender.id=mts1"
-      - "mts.file.deleteUploads=false"
+      - "mts.file.deleteUploads=true"
       - "kafka.bootstrapAddress=node249-hpc.isti.cnr.it:9092"
       - "kafka.groupId=$GROUPID"
       - "kafka.uploadsTopicName=teaching.federated_learning.client_models"
