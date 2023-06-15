@@ -11,17 +11,15 @@ services:
     env_file:
       - env/comm/rabbitmq_server.env
 
-  eda_mock:
+  rpi_camera:
     image: "chronis10/teaching-sensors:${ARCH:-amd64}"
-    container_name: file_multisensor
+    container_name: rpi_camera
     depends_on: 
       - rabbitmq
     restart: on-failure
     env_file:
-      - env/eda_mock.env
+      - env/rpi_camera.env
       - env/comm/rabbitmq_client.env
-    volumes:
-      - $APP_DIR/mock_data:/app/raw_data
 
   stress_module:
     image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
