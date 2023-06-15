@@ -20,6 +20,8 @@ services:
     env_file:
       - env/rpi_camera.env
       - env/comm/rabbitmq_client.env
+    volumes:
+      - $APP_DIR/data_storage:/app/storage
 
   stress_module:
     image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
