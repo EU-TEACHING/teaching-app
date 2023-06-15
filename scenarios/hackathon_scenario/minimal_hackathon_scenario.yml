@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+    env_file:
+      - env/comm/rabbitmq_server.env
+
+  eda_mock:
+    image: "chronis10/teaching-sensors:${ARCH:-amd64}"
+    container_name: file_multisensor
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    env_file:
+      - env/eda_mock.env
+      - env/comm/rabbitmq_client.env
+    volumes:
+      - $APP_DIR/mock_data:/app/raw_data
+
+  stress_module:
+    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
+    container_name: stress_module
+    depends_on: 
+      - rabbitmq
+    restart: on-failure
+    env_file:
+      - env/stress_module.env
+      - env/comm/rabbitmq_client.env
+    volumes:
+      - $APP_DIR/data_storage:/app/storage
