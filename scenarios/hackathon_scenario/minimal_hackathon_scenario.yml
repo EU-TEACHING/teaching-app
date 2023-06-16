@@ -21,16 +21,20 @@ services:
       - env/rpi_camera.env
       - env/comm/rabbitmq_client.env
     volumes:
-      - $APP_DIR/data_storage:/app/storage
+      - type: bind
+        source: /home/teaching/teaching-app/data_storage
+        target: /app/storage
+        read_only: true
+#        consistency: cached
 
-  stress_module:
-    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
-    container_name: stress_module
-    depends_on: 
-      - rabbitmq
-    restart: on-failure
-    env_file:
-      - env/stress_module.env
-      - env/comm/rabbitmq_client.env
-    volumes:
-      - $APP_DIR/data_storage:/app/storage
+#  stress_module:
+#    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
+#    container_name: stress_module
+#    depends_on: 
+#      - rabbitmq
+#    restart: on-failure
+#    env_file:
+#      - env/stress_module.env
+#      - env/comm/rabbitmq_client.env
+#    volumes:
+#      - $APP_DIR/data_storage:/app/storage
