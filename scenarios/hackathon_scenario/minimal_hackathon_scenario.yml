@@ -28,7 +28,7 @@ services:
         # consistency: cached
 
   or_module:
-    image: "chronis10/teaching-ai-toolkit:${ARCH:-amd64}"
+    image: "my-teaching-ai-toolkit:${ARCH:-amd64}"
     container_name: or_module
     depends_on:
       - rabbitmq
